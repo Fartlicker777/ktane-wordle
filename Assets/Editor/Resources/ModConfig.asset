@@ -11,20 +11,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615501dbe4f3fe94fbf4b564abb10237, type: 3}
   m_Name: ModConfig
   m_EditorClassIdentifier: 
-  id: template
-  title: Template
-  author: Blananas2
-  description: 'Flavor text here
+  id: WordleFixed
+  title: Wordle [REUPLOAD]
+  author: me
+  description: 'Play Fillominordle today!
 
 
     Module by Blananas2
 
-    Other credits go here
+    Inspired by the Wardle himself.
+
+    Also thanks to Fish for p
 
 
-    Module ID: ab
+    Module ID: wordle
 
-    The manual can be found here: https://ktane.timwi.de/HTML/A%20B.html'
+    The manual can be found here: https://ktane.timwi.de/HTML/Wordle.html'
   version: 
   outputFolder: build
-  previewImage: {fileID: 0}
+  previewImage: {fileID: 2800000, guid: 3db3f71796cb8824abf3bfe2e38af335, type: 3}
