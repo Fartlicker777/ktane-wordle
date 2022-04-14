@@ -26,7 +26,7 @@ public class wordleScript : MonoBehaviour {
 
     bool lightMode = false;
     bool highContrastMode = false;
-    bool hardMode = true;
+    bool hardMode = false;
 
     bool focused = false;
     private KeyCode[] Keys =
@@ -105,14 +105,14 @@ public class wordleScript : MonoBehaviour {
                     if (hardMode) {
                         for (int y = 0; y < 5; y++) {
                             if (hardYellows[y] != '_' && !guesses[stage].Contains(hardYellows[y])) {
-                                StartCoroutine(Message(String.Format("Guess must contain {0}", hardYellows[y].ToString().ToUpper())));
+                                StartCoroutine(Message(String.Format("Guess must contain {0}", hardYellows[y].ToString().ToUpper()), 0.02f));
                                 StartCoroutine(WrongAnimation(stage));
                                 return;
                             }
                         }
                         for (int g = 0; g < 5; g++) {
                             if (hardGreens[g] != '_' && hardGreens[g] != guesses[stage][g]) {
-                                StartCoroutine(Message(String.Format("{0} letter must be {1}", ordinals[g], hardGreens[g].ToString().ToUpper())));
+                                StartCoroutine(Message(String.Format("{0} letter must be {1}", ordinals[g], hardGreens[g].ToString().ToUpper()), 0.02f));
                                 StartCoroutine(WrongAnimation(stage));
                                 return;
                             }
@@ -122,7 +122,7 @@ public class wordleScript : MonoBehaviour {
                     flipping = true;
                     StartCoroutine(FlipAnimation(stage));
                 } else {
-                    StartCoroutine(Message("Not in word list"));
+                    StartCoroutine(Message("Not in word list", 0.02f));
                     StartCoroutine(WrongAnimation(stage));
                 }
             }
@@ -281,6 +281,7 @@ public class wordleScript : MonoBehaviour {
     }
 
     IEnumerator Reset() {
+        StartCoroutine(Message(word, 0.01f));
         for (int r = 5; r > -1; r--) {
             for (int l = 4; l > -1; l--) {
                 Letters[r*5 + l].text = ""; 
@@ -296,8 +297,8 @@ public class wordleScript : MonoBehaviour {
         flipping = false;
     }
 
-    IEnumerator Message (string s) {
-        ButtonObj.transform.localScale = new Vector3(0.02f, 0.01f, 0.01f);
+    IEnumerator Message (string s, float f) {
+        ButtonObj.transform.localScale = new Vector3(f, 0.01f, 0.01f);
         ButtonObj.SetActive(true);
         ButtonText.text = s;
         yield return new WaitForSeconds(1f);
